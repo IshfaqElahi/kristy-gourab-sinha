@@ -1044,8 +1044,142 @@ button {
 }
 
 /* ==========================================================================
+   Hero Layout & Interactive 3D Crystal Stage
+   ========================================================================== */
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.95fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-content {
+  min-width: 0;
+}
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.crystal-stage {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 440px;
+  border-radius: 24px;
+  background: radial-gradient(circle at 50% 50%, var(--accent-soft) 0%, transparent 72%), var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.06);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+[data-theme="dark"] .crystal-stage {
+  box-shadow: 0 24px 60px -16px rgba(0, 0, 0, 0.65), 0 0 36px -8px rgba(92, 225, 182, 0.12);
+  background: radial-gradient(circle at 50% 50%, rgba(92, 225, 182, 0.09) 0%, transparent 70%), var(--bg-elevated);
+}
+
+.crystal-stage:active {
+  cursor: grabbing;
+}
+
+#crystal-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.crystal-card-overlay {
+  position: absolute;
+  inset: 16px;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.crystal-pill {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+  background-color: var(--bg-nav);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-subtle);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.crystal-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.crystal-drag-hint {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background-color: var(--bg-nav);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.crystal-stage:hover .crystal-drag-hint {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.crystal-drag-hint svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ==========================================================================
    Responsive Breakpoints
    ========================================================================== */
+
+@media (max-width: 960px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .crystal-stage {
+    max-width: 100%;
+    height: 380px;
+  }
+}
 
 @media (max-width: 860px) {
   .section-block {
