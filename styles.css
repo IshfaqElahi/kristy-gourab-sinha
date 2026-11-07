@@ -303,9 +303,12 @@ button {
 }
 
 .hero-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   font-size: 0.98rem;
   color: var(--text-secondary);
-  max-width: 740px;
+  max-width: 780px;
   line-height: 1.72;
   margin-bottom: 32px;
 }
