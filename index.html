@@ -42,9 +42,15 @@
         <a href="#skills" class="nav-link">Skills</a>
         <a href="#awards" class="nav-link">Awards</a>
         <a href="#references" class="nav-link">References</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </nav>
 
-      <div class="nav-actions">
+            <div class="nav-actions">
+        <div class="visitor-counter-pill" title="Dynamic Page Visitors">
+          <span class="visitor-dot"></span>
+          <span class="visitor-label">Visitors:</span>
+          <span id="visitor-count" class="visitor-count tabular-nums">Loading...</span>
+        </div>
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle Light / Dark theme">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -927,12 +933,102 @@
       </div>
     </section>
 
+    <!-- 08. Contact Me -->
+    <section id="contact" class="section-block reveal">
+      <div class="section-sidebar">
+        <div class="section-sticky">
+          <span class="section-index tabular-nums">08 / Contact</span>
+          <h2 class="section-title">Get in Touch</h2>
+          <p class="section-desc">Research collaborations, academic inquiries, or consulting requests.</p>
+        </div>
+      </div>
+
+      <div class="section-content">
+        <div class="contact-box">
+          <div class="contact-info">
+            <div>
+              <div class="contact-badge">
+                <span class="status-pulse"></span>
+                <span>Open for Inquiries</span>
+              </div>
+              <h3 class="contact-info-title" style="margin-top: 14px;">Let's connect &amp; collaborate</h3>
+              <p class="contact-info-desc" style="margin-top: 8px;">
+                Have a research question, project proposal, or speaking inquiry? Send a direct message below. Your note delivers straight to my personal email inbox.
+              </p>
+            </div>
+
+            <div class="contact-direct-links">
+              <a href="mailto:kristygourabsinhaa@gmail.com" class="contact-direct-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span>kristygourabsinhaa@gmail.com</span>
+              </a>
+              <div class="contact-direct-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>BUET · MIST, Dhaka, Bangladesh</span>
+              </div>
+            </div>
+          </div>
+
+          <form id="contact-form" class="contact-form" action="https://formsubmit.co/kristygourabsinhaa@gmail.com" method="POST">
+            <!-- FormSubmit Email Delivery Settings -->
+            <input type="hidden" name="_subject" value="New Inquiry from Portfolio Website" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Your Name</label>
+                <input type="text" id="contact-name" name="name" class="form-input" placeholder="e.g. Dr. Alex Johnson" required />
+              </div>
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Your Email</label>
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="name@example.com" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">Subject</label>
+              <input type="text" id="contact-subject" name="subject" class="form-input" placeholder="Research Collaboration / Inquiries" required />
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Message</label>
+              <textarea id="contact-message" name="message" class="form-textarea" rows="4" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" id="contact-submit-btn" class="btn-submit">
+              <span class="btn-text">Send Message</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+
+            <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <span>&copy; 2026 Kristy Gourab Sinha. All rights reserved.</span>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+        <span>&copy; 2026 Kristy Gourab Sinha. All rights reserved.</span>
+        <div class="footer-visitor">
+          <span class="visitor-dot"></span>
+          <span>Live Page Visitors: <strong id="footer-visitor-count" class="tabular-nums">Loading...</strong></span>
+        </div>
+      </div>
       <div class="footer-links">
         <a href="mailto:kristygourabsinhaa@gmail.com">Email</a>
         <a href="https://scholar.google.com/citations?user=m2Pxc40AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>

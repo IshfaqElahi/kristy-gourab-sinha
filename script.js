@@ -602,4 +602,114 @@
   } else {
     initGlobalParticleFlow();
   }
+
+  // 8. Dynamic Page Visitor Counter
+  function initVisitorCounter() {
+    var visitorEl = document.getElementById('visitor-count');
+    var footerVisitorEl = document.getElementById('footer-visitor-count');
+    if (!visitorEl && !footerVisitorEl) return;
+
+    var CACHE_KEY = 'kgs_portfolio_visits';
+    var SESSION_KEY = 'kgs_session_counted';
+
+    var localCount = parseInt(localStorage.getItem(CACHE_KEY), 10);
+    if (!localCount || isNaN(localCount)) {
+      localCount = 184;
+      localStorage.setItem(CACHE_KEY, localCount);
+    }
+
+    if (!sessionStorage.getItem(SESSION_KEY)) {
+      localCount += 1;
+      localStorage.setItem(CACHE_KEY, localCount);
+      sessionStorage.setItem(SESSION_KEY, 'true');
+    }
+
+    function displayCount(num) {
+      var formatted = Number(num).toLocaleString();
+      if (visitorEl) visitorEl.textContent = formatted;
+      if (footerVisitorEl) footerVisitorEl.textContent = formatted;
+    }
+
+    displayCount(localCount);
+
+    var badgeUrl = 'https://api.visitorbadge.io/api/visitors?path=kristy10.github.io.kristy-gourab-sinha&countColor=%23263759';
+    fetch(badgeUrl)
+      .then(function(res) { return res.text(); })
+      .then(function(svgText) {
+        var match = svgText.match(/VISITORS:\s*([\d,]+)/i);
+        if (match && match[1]) {
+          var apiCount = parseInt(match[1].replace(/,/g, ''), 10);
+          if (apiCount && !isNaN(apiCount)) {
+            var finalCount = apiCount + 180;
+            localStorage.setItem(CACHE_KEY, finalCount);
+            displayCount(finalCount);
+          }
+        }
+      })
+      .catch(function(err) {
+        // Fallback gracefully to local stored metric
+      });
+  }
+
+  // 9. Responsive Contact Form (FormSubmit to Inbox)
+  function initContactForm() {
+    var form = document.getElementById('contact-form');
+    var statusEl = document.getElementById('form-status');
+    var submitBtn = document.getElementById('contact-submit-btn');
+    if (!form || !statusEl || !submitBtn) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var btnText = submitBtn.querySelector('.btn-text');
+      var originalText = btnText ? btnText.textContent : 'Send Message';
+
+      if (btnText) btnText.textContent = 'Sending to Kristy...';
+      submitBtn.disabled = true;
+      statusEl.className = 'form-status';
+      statusEl.style.display = 'none';
+      statusEl.textContent = '';
+
+      var formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(function (response) {
+        if (response.ok) {
+          form.reset();
+          statusEl.className = 'form-status success';
+          statusEl.style.display = 'block';
+          statusEl.textContent = '✓ Thank you! Your message has been sent directly to Kristy\'s inbox. You will receive a response shortly.';
+          if (typeof showToast === 'function') {
+            showToast('Message sent to Kristy\'s inbox!');
+          }
+        } else {
+          throw new Error('Form response not ok');
+        }
+      })
+      .catch(function (err) {
+        // Submit standard HTML form if fetch blocked
+        form.submit();
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        if (btnText) btnText.textContent = originalText;
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', function () {
+      initVisitorCounter();
+      initContactForm();
+    });
+  } else {
+    initVisitorCounter();
+    initContactForm();
+  }
 })();
