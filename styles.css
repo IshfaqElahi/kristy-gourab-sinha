@@ -11,6 +11,7 @@
   --bg-subtle: #F2F1ED;
   --bg-pill: #EAE8E1;
   --bg-nav: rgba(250, 249, 246, 0.84);
+  --bg-card-glass: rgba(255, 255, 255, 0.84);
 
   --text-primary: #121212;
   --text-secondary: #4A4A46;
@@ -45,6 +46,7 @@
   --bg-subtle: #171918;
   --bg-pill: #202321;
   --bg-nav: rgba(11, 12, 11, 0.84);
+  --bg-card-glass: rgba(18, 20, 19, 0.84);
 
   --text-primary: #F3F4F3;
   --text-secondary: #A6AAA7;
@@ -1041,6 +1043,40 @@ button {
   html {
     scroll-behavior: auto;
   }
+}
+
+
+/* ==========================================================================
+   Full Website Dynamic Particle Flow Background
+   ========================================================================== */
+
+#bg-particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.75;
+  transition: opacity var(--transition-base);
+}
+
+.site-header,
+.main-container,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.entry-card,
+.project-item,
+.pub-item,
+.skill-card,
+.ref-card {
+  background-color: var(--bg-card-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* ==========================================================================
